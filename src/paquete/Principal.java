@@ -1,6 +1,6 @@
 package paquete;
 
-/** perfecto! buenas noches.
+/**
  * 
  *
  * @author Juan Pablo
