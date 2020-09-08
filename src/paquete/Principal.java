@@ -2,8 +2,12 @@ package paquete;
 
 /**
  * 
+<<<<<<< Updated upstream
  *
  * @author Juan Pablo
+=======
+ * @author Jose Alejandro, Pablo Cesar, Juan Pablo
+>>>>>>> Stashed changes
  */
 public class Principal extends javax.swing.JPanel {
 //nuevo comentario

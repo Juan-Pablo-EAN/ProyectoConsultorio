@@ -2,8 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< Updated upstream
         <group>
             <file>file:/C:/Users/LPS/Documents/GitHub/ProyectoConsultorio/src/paquete/Principal.java</file>
         </group>
+=======
+<<<<<<< HEAD
+        <group/>
+=======
+        <group>
+            <file>file:/C:/Users/LPS/Documents/GitHub/ProyectoConsultorio/src/paquete/Principal.java</file>
+        </group>
+>>>>>>> 0c9c266c487eb6f0cf3b9de5a41b51f8c0317bd7
+>>>>>>> Stashed changes
     </open-files>
 </project-private>
