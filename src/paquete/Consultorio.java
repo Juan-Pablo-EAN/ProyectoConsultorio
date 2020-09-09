@@ -66,8 +66,7 @@ public class Consultorio extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jComboBox7 = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
-        jTextField6 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        mostrarDatos = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -156,12 +155,10 @@ public class Consultorio extends javax.swing.JFrame {
             }
         });
 
-        jTextField6.setText("No. Documento");
-
-        jButton2.setText("Por Documento de identificacion");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        mostrarDatos.setText("Por Documento de identificacion");
+        mostrarDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                mostrarDatosActionPerformed(evt);
             }
         });
 
@@ -250,9 +247,7 @@ public class Consultorio extends javax.swing.JFrame {
                                     .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton4))
                                 .addGap(46, 46, 46)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(mostrarDatos)))
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -318,13 +313,12 @@ public class Consultorio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton4)
-                    .addComponent(jButton2))
+                    .addComponent(mostrarDatos))
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
                 .addContainerGap(18, Short.MAX_VALUE))
@@ -341,9 +335,11 @@ public class Consultorio extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void mostrarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarDatosActionPerformed
+        hide();
+        DatosPaciente verDatos = new DatosPaciente();
+        verDatos.setVisible(true);
+    }//GEN-LAST:event_mostrarDatosActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         System.exit(0);
@@ -418,7 +414,6 @@ public class Consultorio extends javax.swing.JFrame {
     private javax.swing.JTextField cedulaTexto;
     private javax.swing.JComboBox<String> city;
     private javax.swing.JComboBox<String> context;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -441,7 +436,7 @@ public class Consultorio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JButton mostrarDatos;
     private javax.swing.JTextField nameTexto;
     private javax.swing.JButton resgistrar;
     private javax.swing.JTextField textoApellido;
