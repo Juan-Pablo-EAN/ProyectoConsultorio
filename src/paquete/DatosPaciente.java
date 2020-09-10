@@ -31,6 +31,7 @@ public class DatosPaciente extends javax.swing.JFrame {
         volverInicio = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,7 +50,7 @@ public class DatosPaciente extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("No. Documento");
+        jTextField1.setToolTipText("No. Documento");
 
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -58,42 +59,48 @@ public class DatosPaciente extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("No. Documento");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jButton1))
-                        .addContainerGap(135, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(volverInicio)
                 .addGap(14, 14, 14))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jButton1)))
+                            .addComponent(jLabel2))
+                        .addGap(0, 131, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(volverInicio)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -106,23 +113,36 @@ public class DatosPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_volverInicioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            long busqueda = Long.parseLong(jTextField1.getText());
+        
+        if(jTextField1.getText().length() == 0) {
+                JOptionPane.showMessageDialog(null, "Digite el numero de documento primero");
+            }
+            else {
+                int contador = 0;
+                
+                try {
+                    long busqueda = Long.parseLong(jTextField1.getText());
 
-            for (Paciente id : base.queryForAll()) {
-                if (busqueda == id.getDocumento()) {
-                    jTextArea1.setText("Nombre completo: " + id.getNombre() + " " + id.getApellido() + "\n\n"
-                            + "Cedula: " + id.getDocumento() + "\n\n"
-                            + "Peso: " + id.getPeso_kg() + " kg\n\n"
-                            + "Contextura: " + id.getContextura() + "\n\n"
-                            + "Ciudad: " + id.getCiudad() + "\n\n"
-                            + "Sintomas respiratorios: " + id.getRespiratorio() + "\n\n"
-                            + "Sintomas oculares: " + id.getOculares() + "\n\n");
+                    for (Paciente id : base.queryForAll()) {
+                        if (busqueda == id.getDocumento()) {
+                            contador = contador + 1;
+                            jTextArea1.setText("Nombre completo: " + id.getNombre() + " " + id.getApellido() + "\n\n"
+                                    + "Cedula: " + id.getDocumento() + "\n\n"
+                                    + "Peso: " + id.getPeso_kg() + " kg\n\n"
+                                    + "Contextura: " + id.getContextura() + "\n\n"
+                                    + "Ciudad: " + id.getCiudad() + "\n\n"
+                                    + "Sintomas respiratorios: " + id.getRespiratorio() + "\n\n"
+                                    + "Sintomas oculares: " + id.getOculares() + "\n\n");
+                        }
+                    }
+                    if (contador == 0) {
+                        jTextArea1.setText("No hay pacientes registrados con ese documento " + "\n\n" + "Total de pacientes: " + contador );
+                    }
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "El paciente con cedula " + busqueda + " no está registrado");
                 }
             }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "El paciente con cedula " + busqueda + " no está registrado");
-        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
@@ -160,6 +180,7 @@ public class DatosPaciente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;

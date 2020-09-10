@@ -62,10 +62,10 @@ public class Consultorio extends javax.swing.JFrame {
         resgistrar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel14 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
-        jComboBox7 = new javax.swing.JComboBox<>();
-        jButton4 = new javax.swing.JButton();
+        comboRespiratorios = new javax.swing.JComboBox<>();
+        mostrarPacientesPorRespiratorios = new javax.swing.JButton();
+        comboCiudad = new javax.swing.JComboBox<>();
+        mostrarPacientesPorCiudad = new javax.swing.JButton();
         mostrarDatos = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
@@ -107,6 +107,11 @@ public class Consultorio extends javax.swing.JFrame {
         jLabel11.setText("Contextura");
 
         context.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Delgado", "Gordo" }));
+        context.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contextActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Ciudad");
 
@@ -119,7 +124,7 @@ public class Consultorio extends javax.swing.JFrame {
 
         jLabel12.setText("Respiratorios");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tos", "Asma" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tos", "Asma", "Bronquitis" }));
 
         jLabel13.setText("Oculares");
 
@@ -137,21 +142,21 @@ public class Consultorio extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel14.setText("Consultas");
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tos", "Asma" }));
+        comboRespiratorios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tos", "Asma", "Bronquitis" }));
 
-        jButton3.setText("Por Sintomas Respitatorios");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        mostrarPacientesPorRespiratorios.setText("Por Sintomas Respitatorios");
+        mostrarPacientesPorRespiratorios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                mostrarPacientesPorRespiratoriosActionPerformed(evt);
             }
         });
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bogota", "Cali", "Medellin" }));
+        comboCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bogota", "Cali", "Medellin" }));
 
-        jButton4.setText("Por Ciudad");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        mostrarPacientesPorCiudad.setText("Por Ciudad");
+        mostrarPacientesPorCiudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                mostrarPacientesPorCiudadActionPerformed(evt);
             }
         });
 
@@ -240,12 +245,12 @@ public class Consultorio extends javax.swing.JFrame {
                                             .addComponent(resgistrar)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton3))
+                                    .addComponent(comboRespiratorios, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(mostrarPacientesPorRespiratorios))
                                 .addGap(43, 43, 43)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton4))
+                                    .addComponent(comboCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(mostrarPacientesPorCiudad))
                                 .addGap(46, 46, 46)
                                 .addComponent(mostrarDatos)))
                         .addContainerGap())))
@@ -284,12 +289,13 @@ public class Consultorio extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(jLabel6))
                         .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nameTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(context, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textoPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(nameTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(context, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textoPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -312,12 +318,12 @@ public class Consultorio extends javax.swing.JFrame {
                 .addComponent(jLabel14)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboRespiratorios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
+                    .addComponent(mostrarPacientesPorRespiratorios)
+                    .addComponent(mostrarPacientesPorCiudad)
                     .addComponent(mostrarDatos))
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
@@ -327,13 +333,21 @@ public class Consultorio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void mostrarPacientesPorRespiratoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarPacientesPorRespiratoriosActionPerformed
+        hide();
+        DatosPacientePorRespiratorio verDatos = new DatosPacientePorRespiratorio();
+        String sintomaRespiratorio = comboRespiratorios.getSelectedItem().toString();
+        verDatos.setValue(sintomaRespiratorio);
+        verDatos.setVisible(true);
+    }//GEN-LAST:event_mostrarPacientesPorRespiratoriosActionPerformed
 
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void mostrarPacientesPorCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarPacientesPorCiudadActionPerformed
+        hide();
+        DatosPacientePorCiudad verDatos = new DatosPacientePorCiudad();
+        String nombreCiudad = comboCiudad.getSelectedItem().toString();
+        verDatos.setValue(nombreCiudad);
+        verDatos.setVisible(true);
+    }//GEN-LAST:event_mostrarPacientesPorCiudadActionPerformed
 
     private void mostrarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarDatosActionPerformed
         hide();
@@ -375,6 +389,10 @@ public class Consultorio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cedulaTextoActionPerformed
 
+    private void contextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contextActionPerformed
+
     public static void main(String args[]) throws SQLException {
 
         try {
@@ -413,13 +431,11 @@ public class Consultorio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Oculares_Box;
     private javax.swing.JTextField cedulaTexto;
     private javax.swing.JComboBox<String> city;
+    private javax.swing.JComboBox<String> comboCiudad;
+    private javax.swing.JComboBox<String> comboRespiratorios;
     private javax.swing.JComboBox<String> context;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -437,6 +453,8 @@ public class Consultorio extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton mostrarDatos;
+    private javax.swing.JButton mostrarPacientesPorCiudad;
+    private javax.swing.JButton mostrarPacientesPorRespiratorios;
     private javax.swing.JTextField nameTexto;
     private javax.swing.JButton resgistrar;
     private javax.swing.JTextField textoApellido;
