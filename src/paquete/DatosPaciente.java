@@ -50,8 +50,6 @@ public class DatosPaciente extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setToolTipText("No. Documento");
-
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,48 +57,53 @@ public class DatosPaciente extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("No. Documento");
+        jLabel2.setText("Ingrese el número de documento del paciente:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(volverInicio)
-                .addGap(14, 14, 14))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(volverInicio)
+                                .addGap(14, 14, 14))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(122, 122, 122))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jButton1)))
-                            .addComponent(jLabel2))
-                        .addGap(0, 131, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jButton1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 99, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addGap(12, 12, 12)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(volverInicio)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -113,36 +116,23 @@ public class DatosPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_volverInicioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        if(jTextField1.getText().length() == 0) {
-                JOptionPane.showMessageDialog(null, "Digite el numero de documento primero");
-            }
-            else {
-                int contador = 0;
-                
-                try {
-                    long busqueda = Long.parseLong(jTextField1.getText());
+        try {
+            long busqueda = Long.parseLong(jTextField1.getText());
 
-                    for (Paciente id : base.queryForAll()) {
-                        if (busqueda == id.getDocumento()) {
-                            contador = contador + 1;
-                            jTextArea1.setText("Nombre completo: " + id.getNombre() + " " + id.getApellido() + "\n\n"
-                                    + "Cedula: " + id.getDocumento() + "\n\n"
-                                    + "Peso: " + id.getPeso_kg() + " kg\n\n"
-                                    + "Contextura: " + id.getContextura() + "\n\n"
-                                    + "Ciudad: " + id.getCiudad() + "\n\n"
-                                    + "Sintomas respiratorios: " + id.getRespiratorio() + "\n\n"
-                                    + "Sintomas oculares: " + id.getOculares() + "\n\n");
-                        }
-                    }
-                    if (contador == 0) {
-                        jTextArea1.setText("No hay pacientes registrados con ese documento " + "\n\n" + "Total de pacientes: " + contador );
-                    }
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "El paciente con cedula " + busqueda + " no está registrado");
+            for (Paciente id : base.queryForAll()) {
+                if (busqueda == id.getDocumento()) {
+                    jTextArea1.setText("Nombre completo: " + id.getNombre() + " " + id.getApellido() + "\n\n"
+                            + "Cedula: " + id.getDocumento() + "\n\n"
+                            + "Peso: " + id.getPeso_kg() + " kg\n\n"
+                            + "Contextura: " + id.getContextura() + "\n\n"
+                            + "Ciudad: " + id.getCiudad() + "\n\n"
+                            + "Sintomas respiratorios: " + id.getRespiratorio() + "\n\n"
+                            + "Sintomas oculares: " + id.getOculares() + "\n\n");
                 }
             }
-        
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "El paciente con cedula " + busqueda + " no está registrado");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
