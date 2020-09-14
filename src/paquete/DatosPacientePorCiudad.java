@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import static paquete.Consultorio.base;
 
 public class DatosPacientePorCiudad extends javax.swing.JFrame {
@@ -29,10 +30,11 @@ public class DatosPacientePorCiudad extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         volverInicio = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaPorCiudad = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 255, 204));
@@ -40,11 +42,6 @@ public class DatosPacientePorCiudad extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Consultorio");
-
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
 
         volverInicio.setText("Volver al inicio");
         volverInicio.addActionListener(new java.awt.event.ActionListener() {
@@ -55,24 +52,49 @@ public class DatosPacientePorCiudad extends javax.swing.JFrame {
 
         jLabel2.setText("Pacientes por ciudad");
 
+        tablaPorCiudad.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Identificador", "Nombre", "Apellido"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tablaPorCiudad);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(volverInicio)))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(158, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addGap(137, 137, 137))
+                .addGap(212, 212, 212))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(volverInicio))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 8, Short.MAX_VALUE)))
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,11 +103,13 @@ public class DatosPacientePorCiudad extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(volverInicio)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(41, 41, 41))
         );
 
         pack();
@@ -133,8 +157,9 @@ public class DatosPacientePorCiudad extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tablaPorCiudad;
     private javax.swing.JButton volverInicio;
     // End of variables declaration//GEN-END:variables
 
@@ -148,25 +173,30 @@ public class DatosPacientePorCiudad extends javax.swing.JFrame {
         String resultado = "Listado de pacientes de la ciudad de " + ciudad.toUpperCase() + "\n\n";
         int contador = 0;
         
+        DefaultTableModel dtm = (DefaultTableModel) tablaPorCiudad.getModel();
+        dtm.setRowCount(0);
+        
         try {
             for (Paciente datoPaciente : base.queryForAll()) {
                 if (ciudad.equals(datoPaciente.getCiudad())) {
-                    resultado += "Documento: " + datoPaciente.getDocumento() + "\n" +
-                                 "Nombre completo: " + datoPaciente.getNombre() + " " + datoPaciente.getApellido() + "\n\n" +
-                                 "---------------------------------------------" + "\n\n";
+                    Object [] fila = {datoPaciente.getDocumento(), datoPaciente.getNombre(), datoPaciente.getApellido()};
+                    dtm.addRow(fila);
+                    
                     contador = contador + 1;
+                    
                 }
             }
             if (contador == 0) {
-                jTextArea1.setText("No hay pacientes registrados para la ciudad de " + ciudad.toUpperCase() + "\n\n" + "Total de pacientes: " + contador );
+                jLabel3.setText("No hay pacientes registrados para la ciudad de " + ciudad.toUpperCase() + " .Total de pacientes: " + contador );
             }
             else {
-                jTextArea1.setText(resultado + "\n\n" + "Total de pacientes: " + contador);
+                
+                jLabel3.setText("Total de pacientes en la ciudad de " + ciudad.toUpperCase() + ": " + contador);
             }
             
         } 
         catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "El paciente de la ciudad " + ciudad + " no está registrado");
+            JOptionPane.showMessageDialog(null, "El paciente de la ciudad " + ciudad.toUpperCase() + " no está registrado");
         }
         
     }
