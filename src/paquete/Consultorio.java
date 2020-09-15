@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- * Autores: Jose Alejandro Luque Pablo Cesar Arboleda Juan Pablo Ballesteros
+ * Autores: Jose Alejandro Luque, Pablo Cesar Arboleda, Juan Pablo Ballesteros
  */
 public class Consultorio extends javax.swing.JFrame {
 
